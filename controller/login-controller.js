@@ -3,6 +3,8 @@
 const express =require('express');
 const router = express.Router();
 
+const jwt = require('jsonwebtoken');
+
 const config = require('config');
 
 const bcrypt = require('bcrypt');
@@ -34,15 +36,19 @@ router.post('/', (req, res) => {
         let passwordMatch = checkUser(req.body.password, user.password);
 
         if (passwordMatch) {
+
+            jwt.sign( {username: req.body.username}, config.get('jwt.tokenKey'), function (err, token) {
+                if (err) console.log("Error with token: " + err);
+
+                console.log("Token generated: " + token );
+            })
+
             console.log("Successfully logged in");
         } else {
             console.log("Login failed");
         }
         
     })
-
-
-
 
 })
 
