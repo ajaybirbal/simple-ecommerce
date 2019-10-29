@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Home Page
+    body
+        h1 Welcome to my home page!
+
+
+        //Registration form
+        //Wrap a box around it soon and make it pop up when user click register now
+        h3  Register as a Seller!
+        form(action="register", method="post")
+            p
+                label(for="inputUserName") Username: 
+                input(type="text" name="username" id="inputUserName" placeholder="Username" required autofocus)
+            p
+                label(for="inputEmail") Email: 
+                input(type="email" name="email" id="inputEmail" placeholder="Email address" required autofocus)
+            p
+                label(for="inputPassword") Password: 
+                input(type="password" name="password" id="inputPassword" placeholder="Password" required autofocus)
+            p
+                button(type="submit") Register Now
