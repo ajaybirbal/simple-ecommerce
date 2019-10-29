@@ -30,6 +30,10 @@ app.get('/', (req, res) => {
 const registerController = require('./controller/register-controller');
 app.use('/register', registerController);
 
+//Handle login button and then redirection to admin
+const loginController = require('./controller/login-controller');
+app.use('/login', loginController);
+
 
 
 app.listen(3000, function () {

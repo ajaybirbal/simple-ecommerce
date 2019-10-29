@@ -1,5 +1,9 @@
 {
     "passwordSecurity": {
         "saltRounds": 10
+    },
+
+    "mongoose": {
+        "address": "mongodb://localhost/ecommerce-site"
     }
 }
