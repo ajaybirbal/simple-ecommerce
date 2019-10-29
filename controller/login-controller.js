@@ -14,7 +14,7 @@ mongoose.connect(config.get('mongoose.address'), {useNewUrlParser: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-    console.log('Connection to db Successful!');
+    //console.log('Connection to db Successful!');
 });
 
 const { Users } = require('./../models/user');
@@ -41,6 +41,7 @@ router.post('/', (req, res) => {
                 if (err) console.log("Error with token: " + err);
 
                 console.log("Token generated: " + token );
+                res.redirect('/admin');
             })
 
             console.log("Successfully logged in");

@@ -10,7 +10,7 @@ mongoose.connect('mongodb://localhost/ecommerce-site', {useNewUrlParser: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-    console.log('Connection to db Successful!');
+    //console.log('Connection to db Successful!');
 });
 
 const { Users } = require('./../models/user');
