@@ -4,10 +4,17 @@
     },
 
     "mongoose": {
-        "address": "mongodb://localhost/ecommerce-site"
+        "address": "mongodb://localhost/ecommerce-site",
+        "sessionCollection" : "sessionInfo"
     },
 
     "jwt": {
         "tokenKey": "sf2fbw#yh#f42fcz$odut&nd"
-    }
+    },
+
+    "secretKey": {
+        "key": "dasd1123dacaf!!@dfsde3rdq3$^ff"
+    },
+    "isHttps": "false"
+
 }

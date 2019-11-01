@@ -3,8 +3,6 @@
 const express =require('express');
 const router = express.Router();
 
-const jwt = require('jsonwebtoken');
-
 const config = require('config');
 
 const bcrypt = require('bcrypt');
@@ -20,41 +18,49 @@ db.once('open', function() {
 const { Users } = require('./../models/user');
 
 
-
 const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
+
+
 
 router.post('/', (req, res) => {
 
     //add a validation function here later
 
-    Users.findOne({username: req.body.username}, (err, user) => {
+    
+    //If the user is logged in
+    if(!req.session.userId){
+            
+        Users.findOne({username: req.body.username}, (err, user) => {
 
-        if (err) console.log("Database error: " + err);
-
-        let passwordMatch = checkUser(req.body.password, user.password);
-
-        if (passwordMatch) {
-
-            jwt.sign( {username: req.body.username}, config.get('jwt.tokenKey'), function (err, token) {
-                if (err) console.log("Error with token: " + err);
-
-                console.log("Token generated: " + token );
-                res.redirect('/admin');
-            })
-
-            console.log("Successfully logged in");
-        } else {
-            console.log("Login failed");
-        }
         
-    })
+            if (err) console.log("Database error: " + err);
 
+            if (checkUser(req.body.password, user.password)) {
+    
+                req.session.userId = user._id;
+    
+                console.log("Successfully logged in: " + req.session.userId);
+                req.session.save();
+                res.redirect('/admin');
+                //res.redirect('/admin')
+            } else {
+                console.log("Login failed");
+            }
+            
+        })
+
+    } else {
+        res.redirect('/admin');
+    }
 })
 
 async function checkUser(password, dbPassword) {
     return await bcrypt.compare(password,dbPassword);
 }
 
+
 module.exports = router;
+
+
