@@ -44,7 +44,6 @@ router.post('/', (req, res) => {
                 console.log("Successfully logged in: " + req.session.userId);
                 req.session.save();
                 res.redirect('/admin');
-                //res.redirect('/admin')
             } else {
                 console.log("Login failed");
             }
