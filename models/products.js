@@ -3,7 +3,7 @@
 
 const mongoose = require('mongoose');
 
-let userSchema = new mongoose.Schema({
+let productSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -42,7 +42,16 @@ let userSchema = new mongoose.Schema({
     tags: [String]
 })
 
-let Products = mongoose.model('Products', userSchema);
+let Products = mongoose.model('Products', productSchema);
 
 
 exports.Products = Products;
+
+//Outputs all the product sold by the seller
+exports.findAllProducts = async function(sellerId){
+    try {
+        return await Products.find( { 'seller.Id' : sellerId}); 
+    } catch (error) {
+        console.log(e);
+    }
+}

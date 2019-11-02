@@ -5,6 +5,10 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
         title Control Panel
+        
+        script(src="js/jquery.js")
+        script(src="js/FetchProducts.js")
+
     body
         h1 Welcome to Control Panel #{user}!
 
@@ -35,3 +39,6 @@ html(lang="en")
             
             p
                 button(type="submit") Add New product
+
+        //Create a list of all products being sold by the particular seller
+        

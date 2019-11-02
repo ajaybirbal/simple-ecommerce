@@ -44,5 +44,9 @@ router.post('/', (req,res) => {
     }
 })
 
+router.get('/', (req,res) => {
+    res.send('No direct access allowed!');
+})
+
 
 module.exports = router;

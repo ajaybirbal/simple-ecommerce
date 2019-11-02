@@ -3,6 +3,8 @@ const app = express();
 
 const config = require('config');
 
+app.use(express.static('public'));
+
 const session = require('express-session');
 
 //Session storage in database
@@ -16,21 +18,21 @@ store.on('error', function(error) {
     console.log(error);
 });
 
-
+//Set session 
 app.use(session({
     secret: config.get('secretKey.key'),
     resave: false,
     saveUninitialized: true,
     cookie: {
         secure: false,
-        maxAge: 60000
+        maxAge: 600000
     },
     store: store
 }))
 
+//Set view engine
 const pug = require('pug');
 app.set('view engine', 'pug');
-
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -48,13 +50,9 @@ app.use('/login', loginController);
 const adminRouter = require('./routes/admin');
 app.use('/admin', adminRouter);
 
-
-
 //Home page
 app.get('/', (req, res) => {
     res.render('index');
-
-
 })
 
 app.listen(3000, function () {

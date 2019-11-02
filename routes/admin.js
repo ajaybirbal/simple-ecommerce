@@ -12,7 +12,7 @@ let userId;
 const sessionValidator = require('./../controller/session-validation')
 router.use(sessionValidator);
 
-const {Products} = require('./../models/products');
+const findAllProducts = require('./../models/products').findAllProducts;
 
 const addNewProductRouter = require('./../controller/admin-controllers/add-new-product');
 router.use('/add', addNewProductRouter );
@@ -23,19 +23,22 @@ router.get('/', async function (req,res) {
     userId = req.session.userId;
 
     res.render('./../views/admin/admin.pug', {user: userId});
-
-    //Gets all the products being sold by the particular seller
-    const allProducts = await findAllProducts(userId);
-    console.log(allProducts);
 })
 
-async function findAllProducts(sellerId) {
-
-    try {
-        return await Products.find( { 'seller.Id' : sellerId}); 
-    } catch (error) {
-        console.log(e);
+router.get('/all', async(req,res) => {
+    
+    const isAjaxRequest = req.xhr;
+    
+    if (isAjaxRequest) {
+        try {
+            const allProducts = await findAllProducts(userId);
+            res.json(allProducts);
+        } catch (error) {
+            console.log(error);
+        }
+    } else {
+        res.status(404).render('./../views/404.pug')
     }
-}
+})
 
 module.exports = router;
