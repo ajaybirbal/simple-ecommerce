@@ -6,6 +6,32 @@ html(lang="en")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
         title Control Panel
     body
-        h1 Welcome to Control Panel!
+        h1 Welcome to Control Panel #{user}!
 
-        
+        h3  Add a new product!
+        form(action="admin/add", method="post")
+            p
+                label(for="title") Product Title:
+                input(type="text" name="title" id="title" placeholder="Product Title" required autofocus)
+            p
+                label(for="description") Product Description:
+                input(type="text" name="description" id="description" placeholder="Product Description" required autofocus)
+            p
+                label(for="Price") Price: 
+                input(type="price" name="price" id="price" placeholder="Set Price" required autofocus)
+            p
+                label(for="Price") Shipping Charges: 
+                input(type="text" name="shippingCharge" id="shippingCharge" placeholder="Set Shipping Charges" required autofocus)
+            p
+                label(for="Price") Shipping Time: 
+                input(type="text" name="shippingTime" id="shippingTime" placeholder="Set Shipping Time" required autofocus)
+            p
+                label(for="quantity") Total Quantity: 
+                input(type="text" name="quantity" id="quantity" placeholder="Set Total Quantity" required autofocus)
+            p
+                label(for="tags") Tags (Seperated by comma): 
+                input(type="text" name="tags" id="tags" placeholder="Set Price" required autofocus)
+            //Add drag and drop image upload feature soon
+            
+            p
+                button(type="submit") Add New product

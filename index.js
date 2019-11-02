@@ -7,6 +7,7 @@ const session = require('express-session');
 
 //Session storage in database
 const  MongoDBStore = require('connect-mongodb-session')(session);
+//Make a config file for mongodb location and the collection
 const store = new MongoDBStore({
     uri: "mongodb://localhost/ecommerce-site",
     collection: "sessionInfo"

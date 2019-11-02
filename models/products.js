@@ -42,7 +42,7 @@ let userSchema = new mongoose.Schema({
     tags: [String]
 })
 
-let Products = mongoose.model('Users', userSchema);
+let Products = mongoose.model('Products', userSchema);
 
 
 exports.Products = Products;
