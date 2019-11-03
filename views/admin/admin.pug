@@ -13,7 +13,8 @@ html(lang="en")
         h1 Welcome to Control Panel #{user}!
 
         h3  Add a new product!
-        form(action="admin/add", method="post")
+        //form(action="admin/add", method="post")
+        form(id="newProductForm")
             p
                 label(for="title") Product Title:
                 input(type="text" name="title" id="title" placeholder="Product Title" required autofocus)
@@ -38,11 +39,11 @@ html(lang="en")
             //Add drag and drop image upload feature soon
             
             p
-                button(type="submit") Add New product
+                input(type="submit" id="addProductButton")
 
         //Create a list of all products being sold by the particular seller
-        table(id="productsTable")
-            tr
+        table(id="productsTable" style="visibility: hidden;")
+            tr(id="headingProduct")
                 th Title
                 th Description
                 th Price

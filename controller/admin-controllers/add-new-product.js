@@ -20,28 +20,67 @@ router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
 
-router.post('/', (req,res) => {
+
+
+router.post('/', async (req,res) => {
+
+    console.log("Admin add is called");
     
-    try {
-        let product = new Products({
-            title: req.body.title,
-            description: req.body.description,
-            price: req.body.price,
-            shipping: {
-                timeNeeded: req.body.shippingTime,
-                price: req.body.shippingCharge
-            },
-            seller: {
-                Id: req.session.userId
-            },
-            quantity: req.body.quantity,
-            tags: req.body.tags
-        })
-        product.save();
-    } catch(err){
-        console.log(`Database error: ${err} `);
-        res.send(500).send(err);
+    //Check whether req is made by ajax protocol
+    if (req.xhr) {
+        const data = JSON.parse(JSON.stringify(req.body))
+        console.log('Ajax add new product request: ' + data.title);
+        try {
+            let product = new Products({
+                title: req.body.title,
+                description: req.body.description,
+                price: req.body.price,
+                shipping: {
+                    timeNeeded: req.body.shippingTime,
+                    price: req.body.shippingCharge
+                },
+                seller: {
+                    Id: req.session.userId
+                },
+                quantity: req.body.quantity,
+                tags: req.body.tags
+            })
+            product.save();
+        } catch(err){
+            console.log(`Database error: ${err} `);
+            res.send(500).send(err);
+        }
+
+        //Send the success code
+        //After that final code will be executed
+        let response = {
+            status: 200
+        }
+        res.end(JSON.stringify(response));
+
+    } else {
+        try {
+            let product = new Products({
+                title: req.body.title,
+                description: req.body.description,
+                price: req.body.price,
+                shipping: {
+                    timeNeeded: req.body.shippingTime,
+                    price: req.body.shippingCharge
+                },
+                seller: {
+                    Id: req.session.userId
+                },
+                quantity: req.body.quantity,
+                tags: req.body.tags
+            })
+            product.save();
+        } catch(err){
+            console.log(`Database error: ${err} `);
+            res.send(500).send(err);
+        }
     }
+
 })
 
 router.get('/', (req,res) => {
