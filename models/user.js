@@ -21,7 +21,9 @@ let userSchema = new mongoose.Schema({
     salt:{
         type:String,
         required:true
-    }
+    },
+    firstName: String,
+    lastName: String
 })
 
 let Users = mongoose.model('Users', userSchema);

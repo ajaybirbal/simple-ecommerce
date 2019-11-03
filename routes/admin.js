@@ -13,6 +13,7 @@ const sessionValidator = require('./../controller/session-validation')
 router.use(sessionValidator);
 
 const findAllProducts = require('./../models/products').findAllProducts;
+const deleteProduct = require('./../models/products').deleteProduct;
 
 const addNewProductRouter = require('./../controller/admin-controllers/add-new-product');
 router.use('/add', addNewProductRouter );
@@ -39,6 +40,17 @@ router.get('/all', async(req,res) => {
     } else {
         res.status(404).render('./../views/404.pug')
     }
+})
+
+router.get('/delete/:id', async (req, res) => {
+    
+    try {
+        await deleteProduct(req.params.id)
+        console.log('I reached delete ' + req.params.id);
+    } catch (error) {
+        console.log(error);
+    }
+
 })
 
 module.exports = router;
