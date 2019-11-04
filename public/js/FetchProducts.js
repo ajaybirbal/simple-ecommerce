@@ -13,7 +13,6 @@ $(document).submit( '#newProductForm', function(e) {
     
     //Create data for submission to database
     let data = $('#newProductForm').serialize();
-    console.log("Form submitted: " + data);
 
     $.post({
         url: '/admin/add',
@@ -22,7 +21,6 @@ $(document).submit( '#newProductForm', function(e) {
         dataType: 'json'
     }).done( response => {
         resetProductTable();
-        console.log("Successfully added products to the database!")
     }).fail( function (response) {
         console.log('Error New Product: ' + response);
     })
@@ -49,7 +47,7 @@ function getAllProducts(){
                                          <td>${element.DateAdded}</td>
                                          <td>${element.tags}</td>
                                          <td><a href="admin/edit/${element._id}">Edit</a></td>
-                                         <td><a href="admin/delete/${element._id}" id="deleteLink">Delete</a></td>
+                                         <td><input type='button' data-deleteLink='admin/delete/${element._id}' id="deleteProduct" value="Delete"></td>
                                     </tr>`);
             });
         } else {
@@ -66,4 +64,120 @@ function resetProductTable(){
     getAllProducts();
 }
 
+//When delete button is clicked
+$('#deleteProduct').click( function (params) {
+    const link = this.data("deleteLink");
+    console.log(link);
+})
 
+
+$(document).on('click', '#deleteProduct', function (e) {
+    const link = $(this).data('deletelink');
+    ajaxDeleteRequest(link)
+})
+
+
+//Deletes the item from the database
+function ajaxDeleteRequest(link){
+    $.ajax({
+        url: link,
+        method: "DELETE"
+    }).done(function (data) {
+        resetProductTable();
+    }).fail(function (err) {
+        console.log("Ajax Delete Error: " + err);
+    })
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// $('#newProductForm').on('submit', function (e) {
+
+//     console.log("Form is being called!");
+//     e.preventDefault();
+//     $.ajax({
+//         url: '/admin/add',
+//         type: 'POST',
+//     }).done( response => {
+//         resetProductTable();
+//         console.log("Admin add is being requested!")
+//     })
+// })
+
+// $('#deleteLink').click(() => {
+
+//     var url = $(this).attr('href');
+    
+//     //remove the current item from the database also
+//     $.ajax(url).done( function(params) {
+//         $(this).parent().parent().remove();
+//     })
+// });
+
+    
+
+    //Format Date time to a readable
+    function formatTime(dateTime) {
+        return dateTime;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+// //Reloads the table when new product is added to the table
+// $('#addProductButton').click(async function (e) {
+//     e.preventDefault();
+
+//     const newProductForm = $('#newProductForm');
+//     //Sends the data to the server
+//     $.ajax({
+//         url: '/admin/add',
+//         type: 'POST',
+
+//     })
+
+//     //Gets all data from the table
+//     productTable.css("visibility", "hidden");
+//     getAllProducts();
+// })
