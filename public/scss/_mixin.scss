@@ -1,0 +1,12 @@
+
+//Menu burger bar values
+@mixin burger-bar{
+    width: 40px;
+    height: 4px;
+    background: white;
+}
+
+//Animation when slider moves left
+@mixin move-left-animation{
+    transition: 0.4s cubic-bezier(0.47, 0, 0.745, 0.715);
+}

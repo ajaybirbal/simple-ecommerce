@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css?family=Jomolhari|Roboto&display=swap");
+body {
+  background: white;
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.body_container {
+  position: relative;
+  left: 85px;
+  overflow: hidden;
+  -webkit-transition: 0.4s cubic-bezier(0.47, 0, 0.745, 0.715);
+  transition: 0.4s cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+
+.body_container h1 {
+  font-family: 'Jomolhari', serif;
+}
+
+#nav_container {
+  height: 100vh;
+  width: 200px;
+  background: linear-gradient(130deg, #537895 0%, #09203f 100%);
+  position: fixed;
+  top: 0;
+  border-right: #000 solid 3px;
+  left: -135px;
+  -webkit-transition: 0.4s cubic-bezier(0.47, 0, 0.745, 0.715);
+  transition: 0.4s cubic-bezier(0.47, 0, 0.745, 0.715);
+  color: #fff;
+}
+
+#nav_container #nav_button {
+  height: 45px;
+  width: 70px;
+  cursor: pointer;
+  position: absolute;
+  right: -3px;
+  top: 1%;
+}
+
+#nav_container #nav_button .burger_1 {
+  width: 40px;
+  height: 4px;
+  background: white;
+  margin: 5px auto;
+}
+
+#nav_container #nav_button .burger_2 {
+  width: 40px;
+  height: 4px;
+  background: white;
+  margin: 8px auto;
+}
+
+#nav_container #nav_button .burger_3 {
+  width: 40px;
+  height: 4px;
+  background: white;
+  margin: 8px auto;
+}
+
+#nav_container ul {
+  list-style-type: none;
+  font-size: 25px;
+  line-height: 4rem;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  padding-left: 15px;
+  width: 100%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+/*# sourceMappingURL=style.css.map */

@@ -3,52 +3,53 @@ include includes/header.pug
 include includes/navigation.pug
 
 body
-    h1 Welcome to Control Panel #{user}!
+    div(class="body_container")
+        h1 Welcome to Control Panel #{user}!
 
-    h3  Add a new product!
-    //form(action="admin/add", method="post")
-    form(id="newProductForm")
-        p
-            label(for="title") Product Title:
-            input(type="text" name="title" id="title" placeholder="Product Title" required autofocus)
-        p
-            label(for="description") Product Description:
-            input(type="text" name="description" id="description" placeholder="Product Description" required autofocus)
-        p
-            label(for="Price") Price: 
-            input(type="price" name="price" id="price" placeholder="Set Price" required autofocus)
-        p
-            label(for="Price") Shipping Charges: 
-            input(type="text" name="shippingCharge" id="shippingCharge" placeholder="Set Shipping Charges" required autofocus)
-        p
-            label(for="Price") Shipping Time: 
-            input(type="text" name="shippingTime" id="shippingTime" placeholder="Set Shipping Time" required autofocus)
-        p
-            label(for="quantity") Total Quantity: 
-            input(type="text" name="quantity" id="quantity" placeholder="Set Total Quantity" required autofocus)
-        p
-            label(for="tags") Tags (Seperated by comma): 
-            input(type="text" name="tags" id="tags" placeholder="Set Price" required autofocus)
-        //Add drag and drop image upload feature soon
-        
-        p
-            input(type="submit" id="addProductButton")
+        h3  Add a new product!
+        //form(action="admin/add", method="post")
+        form(id="newProductForm")
+            p
+                label(for="title") Product Title:
+                input(type="text" name="title" id="title" placeholder="Product Title" required autofocus)
+            p
+                label(for="description") Product Description:
+                input(type="text" name="description" id="description" placeholder="Product Description" required autofocus)
+            p
+                label(for="Price") Price: 
+                input(type="price" name="price" id="price" placeholder="Set Price" required autofocus)
+            p
+                label(for="Price") Shipping Charges: 
+                input(type="text" name="shippingCharge" id="shippingCharge" placeholder="Set Shipping Charges" required autofocus)
+            p
+                label(for="Price") Shipping Time: 
+                input(type="text" name="shippingTime" id="shippingTime" placeholder="Set Shipping Time" required autofocus)
+            p
+                label(for="quantity") Total Quantity: 
+                input(type="text" name="quantity" id="quantity" placeholder="Set Total Quantity" required autofocus)
+            p
+                label(for="tags") Tags (Seperated by comma): 
+                input(type="text" name="tags" id="tags" placeholder="Set Price" required autofocus)
+            //Add drag and drop image upload feature soon
+            
+            p
+                input(type="submit" id="addProductButton")
 
-    P
-        a(href="admin/logout") Log out
+        P
+            a(href="admin/logout") Log out
 
-    //Create a list of all products being sold by the particular seller
-    table(id="productsTable" style="visibility: hidden;")
-        tr(id="headingProduct")
-            th Title
-            th Description
-            th Price
-            th Shipping Time
-            th Shipping Price
-            th Total Quantity
-            th Date Added
-            th Tags
-            th Settings
-        
-        tr(id="loadingMessage")
-            td Loading Your Products
+        //Create a list of all products being sold by the particular seller
+        table(id="productsTable" style="visibility: hidden;")
+            tr(id="headingProduct")
+                th Title
+                th Description
+                th Price
+                th Shipping Time
+                th Shipping Price
+                th Total Quantity
+                th Date Added
+                th Tags
+                th Settings
+            
+            tr(id="loadingMessage")
+                td Loading Your Products

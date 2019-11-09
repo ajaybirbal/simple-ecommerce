@@ -1,11 +1,25 @@
 const express =require('express');
 const app = express();
 
+var path = require('path');
+
 const config = require('config');
 
 app.use(express.static('public'));
 
 const session = require('express-session');
+
+//Sass settings from here
+// var sassMiddleware = require('node-sass-middleware');
+// app.use(sassMiddleware({
+//     /* Options */
+//     src: path.join(__dirname, '/public/css/'),
+//     dest: path.join(__dirname, 'public/css'),
+//     debug: true,
+//     outputStyle: 'compressed',
+// }));
+
+console.log('dirname: '+path.join(__dirname, '/public/css/style.scss'));
 
 //Session storage in database
 const  MongoDBStore = require('connect-mongodb-session')(session);
@@ -25,7 +39,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: {
         secure: false,
-        maxAge: 600000
+        maxAge: 6000000
     },
     store: store
 }))

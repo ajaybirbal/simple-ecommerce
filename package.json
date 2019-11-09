@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sass": "node-sass -w public/scss -o public/css"
   },
   "keywords": [],
   "author": "",
@@ -18,8 +18,11 @@
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "jsonwebtoken": "^8.5.1",
+    "live-server": "^1.2.1",
     "mongoose": "^5.7.7",
+    "node-sass-middleware": "^0.11.0",
     "nodemon": "^1.19.4",
-    "pug": "^2.0.4"
+    "pug": "^2.0.4",
+    "sass": "^1.23.3"
   }
 }
