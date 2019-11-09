@@ -10,3 +10,48 @@
 @mixin move-left-animation{
     transition: 0.4s cubic-bezier(0.47, 0, 0.745, 0.715);
 }
+
+
+@mixin pop-up-box-admin {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border: #000 solid 3px;
+    background: #fff;
+    transform: translate(-50%,-50%);
+    padding: 60px;
+    z-index: 10;
+    border-radius: 10px;
+}
+
+@mixin pop-up-effect{
+    transition: 0.3s ease-in-out;
+}
+
+@mixin black-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba($color: #000000, $alpha: 0.7);
+}
+
+@mixin admin-buttons {
+    background: #fff;
+    border: #000 solid 2px;
+    width: 190px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 20px;
+    letter-spacing: 2px;
+
+    &:hover{
+        background: linear-gradient(130deg,#537895  0%, #09203f 100%);
+        color: #fff;
+        border: #09203f solid 2px;
+    }
+}

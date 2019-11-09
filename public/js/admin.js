@@ -7,6 +7,11 @@ $(document).ready(function () {
     navButton.addEventListener('click', function (event) {
         toggleMenu();
     })
+
+    //Handle add new product box
+    document.getElementById("showAddProductBox").addEventListener('click', function (event) {
+        showAddProductPopup();
+    });
 });
 
 let toggleMenu = function () {
@@ -22,6 +27,20 @@ let toggleMenu = function () {
         containerArea.style.left = "220px";
         menuFull = true;
     }
+}
 
-    console.log(menuFull);
+let showAddProductPopup  = function(){
+    let popUp = document.getElementById("add-new-product");
+    let blackOverlay = document.getElementById("black-overlay");
+    let crossPopup = document.getElementById("cross-add-product");
+
+    popUp.style.opacity = "1";
+    blackOverlay.style.display = "block";
+
+    crossPopup.addEventListener('click', event => {
+        popUp.style.opacity = "0";
+        blackOverlay.style.display = "none";
+    })
+
+    //Add code if someone clicks on somewhere else close the popup
 }
