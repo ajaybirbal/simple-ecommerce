@@ -1,10 +1,23 @@
 //Set the productTable
 const productTable = $('#productsTable');
 
+//Add new product variables
+let popUp;
+let blackOverlay;
+
 
 //Loads the table as soon as table starts
 $(document).ready( function () {
     getAllProducts();
+
+    //Handle add new product     box
+    popUp = document.getElementById("add-new-product");
+    blackOverlay = document.getElementById("black-overlay");
+    
+    //Handle add new product     box
+    document.getElementById("showAddProductBox").addEventListener('click', function (event) {
+        showAddProductPopup();
+    });
     
 })
 
@@ -21,6 +34,7 @@ $(document).submit( '#newProductForm', function(e) {
         dataType: 'json'
     }).done( response => {
         resetProductTable();
+        hideAddNewpopup();
     }).fail( function (response) {
         console.log('Error New Product: ' + response);
     })
@@ -39,15 +53,13 @@ function getAllProducts(){
         if (data) {
             data.forEach(element => {
                 productTable.append(`<tr class="productRows"><td>${element.title}</td>
-                                         <td>${element.description}</td>
                                          <td>${element.price}</td>
                                          <td>${element.shipping.timeNeeded}</td>
                                          <td>${formatTime(element.shipping.price)}</td>
                                          <td>${element.quantity}</td>
                                          <td>${element.DateAdded}</td>
-                                         <td>${element.tags}</td>
-                                         <td><a href="admin/edit/${element._id}">Edit</a></td>
-                                         <td><input type='button' data-deleteLink='admin/delete/${element._id}' id="deleteProduct" value="Delete"></td>
+                                         <td><a href="admin/edit/${element._id}" class="link-button-admin table-button">Edit</a>
+                                         <button data-deleteLink='admin/delete/${element._id}' id="deleteProduct" value="Delete">Delete</button></td>
                                     </tr>`);
             });
         } else {
@@ -91,93 +103,27 @@ function ajaxDeleteRequest(link){
 
 }
 
+//Format Date time to a readable
+function formatTime(dateTime) {
+    return dateTime;
+}
 
 
+let showAddProductPopup  = function(){
 
+    let crossPopup = document.getElementById("cross-add-product");
 
+    popUp.style.opacity = "1";
+    blackOverlay.style.display = "block";
 
+    crossPopup.addEventListener('click', event => {
+        hideAddNewpopup();
+    })
 
+    //Add code if someone clicks on somewhere else closr
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// $('#newProductForm').on('submit', function (e) {
-
-//     console.log("Form is being called!");
-//     e.preventDefault();
-//     $.ajax({
-//         url: '/admin/add',
-//         type: 'POST',
-//     }).done( response => {
-//         resetProductTable();
-//         console.log("Admin add is being requested!")
-//     })
-// })
-
-// $('#deleteLink').click(() => {
-
-//     var url = $(this).attr('href');
-    
-//     //remove the current item from the database also
-//     $.ajax(url).done( function(params) {
-//         $(this).parent().parent().remove();
-//     })
-// });
-
-    
-
-    //Format Date time to a readable
-    function formatTime(dateTime) {
-        return dateTime;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-// //Reloads the table when new product is added to the table
-// $('#addProductButton').click(async function (e) {
-//     e.preventDefault();
-
-//     const newProductForm = $('#newProductForm');
-//     //Sends the data to the server
-//     $.ajax({
-//         url: '/admin/add',
-//         type: 'POST',
-
-//     })
-
-//     //Gets all data from the table
-//     productTable.css("visibility", "hidden");
-//     getAllProducts();
-// })
+function hideAddNewpopup(){
+    popUp.style.opacity = "0";
+    blackOverlay.style.display = "none";
+}

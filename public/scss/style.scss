@@ -8,14 +8,15 @@ body{
     padding: 0;
     margin: 0;
     font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
 }
 
 .body_container{
-    position: fixed;
-    //left: 7%;
+    position: relative;
     left: $body-container-left;
     overflow: hidden;
     @include move-left-animation;
+    
 
     h1{
         font-family: 'Jomolhari', serif;
@@ -25,7 +26,7 @@ body{
 #nav_container{
     height: 100vh;
     width: $nav-container-width;
-    background: linear-gradient(130deg,#537895  0%, #09203f 100%);
+    background: $brand-gradient;
     position: fixed;
     top: 0;
     border-right: #000 solid 3px;
@@ -39,22 +40,78 @@ body{
         cursor: pointer;
         position: absolute;
         right: -3px;
-        top: 1%;
+        top: 1.5%;
         
 
-        .burger_1{
+        #burger_1{
             @include burger-bar;
             margin: 5px auto;
         }
+        //Rotates the top one
+        @keyframes rotate-upperbar{
+            0%{
+                transform: translateY(0px) rotate(180deg);
+            }
+            100%{
+                transform: translateY(12px) rotate(225deg);    
+            }
+        }
 
-        .burger_2{
+        @keyframes rotate-upperbar-reverse{
+            0%{
+                transform: translateY(12px) rotate(225deg); 
+            }
+            100%{
+                transform: translateY(0px) rotate(180deg);  
+            }
+        }
+
+
+        #burger_2{
             @include burger-bar;
             margin: 8px auto;
         }
 
-        .burger_3{
+        @keyframes middle-bar-invisibility{
+            0%{
+                opacity: 1;
+            }
+            100%{
+                opacity: 0;   
+            }
+        }
+
+        @keyframes middle-bar-invisibility-reverse{
+            0%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;   
+            }
+        }
+
+
+        #burger_3{
             @include burger-bar;
             margin: 8px auto;
+        }
+
+        @keyframes rotate-lowerbar{
+            0%{
+                transform: translate(0px, 0px) rotate(180deg);
+            }
+            100%{
+                transform:  translate(-2px,-12px) rotate(135deg);    
+            }
+        }
+
+        @keyframes rotate-lowerbar-reverse{
+            0%{
+                transform:  translate(-2px,-12px) rotate(135deg); 
+            }
+            100%{ 
+                transform: translate(0px, 0px) rotate(180deg);  
+            }
         }
     }
 
@@ -91,7 +148,7 @@ body{
     h3{
         width: 100%;
         text-align: center;
-        margin-bottom: 35px;
+        margin-bottom: 5px;
         font-family: 'Jomolhari', serif;
     }
 }
@@ -112,3 +169,84 @@ button{
     @include admin-buttons;
     margin: 0 auto;
 }
+
+table{
+    border-collapse: collapse;
+}
+
+th, td{
+    border: 3px solid $brand-second-gradient;
+    padding: 8px;
+}
+
+th{
+    background: $brand-gradient;
+    color: white;
+    padding: 10px 20px;
+    
+}
+
+tr:nth-child(even)
+{
+    background-color: #f2f2f2;
+}
+
+.link-button-admin{
+    @include admin-buttons;
+    padding: 10px;
+    text-decoration: none;
+    color: #000;
+    height: 40px;
+    font-weight: bolder;
+}
+
+input{
+    width: 100%;
+    color: black;
+    font-size: 16px;
+    border: 0;
+    border-bottom: 2px solid black;
+    padding: 5px;
+
+    &:focus{
+        outline: none;
+        border-bottom: 2px solid $brand-first-gradient;
+    }
+    
+}
+
+
+
+
+
+
+
+
+//Animations below
+
+.burger_1_animation{
+    animation: rotate-upperbar $nav-animation-time ease-in forwards;
+}
+
+.burger_2_animation{
+    animation: middle-bar-invisibility $nav-animation-time ease-in forwards;
+}
+
+.burger_3_animation{
+    animation: rotate-lowerbar $nav-animation-time ease-in forwards;
+}
+
+.burger_1_reverse{
+    animation: rotate-upperbar-reverse $nav-animation-time ease-in forwards;
+}
+
+.burger_2_reverse{
+    animation: middle-bar-invisibility-reverse $nav-animation-time ease-in forwards;
+}
+
+.burger_3_reverse{
+    animation: rotate-lowerbar-reverse $nav-animation-time ease-in forwards;
+}
+
+
+

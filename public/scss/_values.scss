@@ -1,11 +1,19 @@
 
+$brand-first-gradient:  #537895;
+$brand-second-gradient: #09203f;
+$brand-gradient: linear-gradient(130deg,$brand-first-gradient  0%, $brand-second-gradient 100%);
+
+
 //Navigation Slider Values
 //All values before animation below
 $nav-container-width: 200px;
 $nav-container-left: -135px;
 
+$nav-animation-time: 0.3s;
+
 //Defines values for the body
 $body-container-left: 85px;
+
 
 
 

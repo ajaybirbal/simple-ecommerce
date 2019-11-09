@@ -15,25 +15,25 @@ body
             form(id="newProductForm")
                 p
                     label(for="title") Product Title:
-                    input(type="text" name="title" id="title" placeholder="Product Title" required autofocus)
+                    input(type="text" name="title" id="title"  required autofocus)
                 p
                     label(for="description") Product Description:
-                    input(type="text" name="description" id="description" placeholder="Product Description" required autofocus)
+                    input(type="text" name="description" id="description"  required autofocus)
                 p
                     label(for="Price") Price: 
-                    input(type="price" name="price" id="price" placeholder="Set Price" required autofocus)
+                    input(type="price" name="price" id="price" required autofocus)
                 p
                     label(for="Price") Shipping Charges: 
-                    input(type="text" name="shippingCharge" id="shippingCharge" placeholder="Set Shipping Charges" required autofocus)
+                    input(type="text" name="shippingCharge" id="shippingCharge"  required autofocus)
                 p
                     label(for="Price") Shipping Time: 
-                    input(type="text" name="shippingTime" id="shippingTime" placeholder="Set Shipping Time" required autofocus)
+                    input(type="text" name="shippingTime" id="shippingTime"  required autofocus)
                 p
                     label(for="quantity") Total Quantity: 
-                    input(type="text" name="quantity" id="quantity" placeholder="Set Total Quantity" required autofocus)
+                    input(type="text" name="quantity" id="quantity"  required autofocus)
                 p
                     label(for="tags") Tags (Seperated by comma): 
-                    input(type="text" name="tags" id="tags" placeholder="Set Price" required autofocus)
+                    input(type="text" name="tags" id="tags" required autofocus)
                 //Add drag and drop image upload feature soon
                 
                 p
@@ -45,19 +45,17 @@ body
 
         P
             button(id="showAddProductBox") Add new product
-            a(href="admin/logout" id="log-out") Log out
+            a(href="admin/logout" id="log-out" class="link-button-admin") Log out
 
         //Create a list of all products being sold by the particular seller
         table(id="productsTable" style="visibility: hidden;")
             tr(id="headingProduct")
                 th Title
-                th Description
                 th Price
                 th Shipping Time
                 th Shipping Price
                 th Total Quantity
                 th Date Added
-                th Tags
                 th Settings
             
             tr(id="loadingMessage")
