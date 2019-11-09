@@ -29,7 +29,6 @@ router.post('/', async (req,res) => {
     //Check whether req is made by ajax protocol
     if (req.xhr) {
         const data = JSON.parse(JSON.stringify(req.body))
-        console.log('Ajax add new product request: ' + data.title);
         try {
             let product = new Products({
                 title: req.body.title,
@@ -84,7 +83,7 @@ router.post('/', async (req,res) => {
 })
 
 router.get('/', (req,res) => {
-    res.send('No direct access allowed!');
+    res.render('./../../views/404.pug');
 })
 
 

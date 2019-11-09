@@ -1,0 +1,36 @@
+
+include includes/header.pug
+include includes/navigation.pug
+script(src="/js/edit-product.js")
+body
+    div(class="body_container")
+        h1 Edit Your Product - #{product.title}
+
+        form(id="editProduct")
+                p   
+                    label(for="title") Product Title:
+                    input(type="text" name="title" id="title"  value=product.title  required autofocus)
+                p
+                    label(for="description") Product Description:
+                    input(type="text" name="description" id="description" value=product.description required autofocus)
+                p
+                    label(for="Price") Price: 
+                    input(type="price" name="price" id="price" value=product.price required autofocus)
+                p
+                    label(for="Price") Shipping Charges: 
+                    input(type="text" name="shippingCharge" id="shippingCharge" value=product.shipping.price required autofocus)
+                p
+                    label(for="Price") Shipping Time: 
+                    input(type="text" name="shippingTime" id="shippingTime" value=product.shipping.timeNeeded required autofocus)
+                p
+                    label(for="quantity") Total Quantity: 
+                    input(type="text" name="quantity" id="quantity" value=product.quantity required autofocus)
+                p
+                    //Handle the tags
+                    label(for="tags") Tags (Seperated by comma): 
+                    input(type="text" name="tags" id="tags" value=product.tags required autofocus)
+                    input(type="hidden" name="id" value=product._id id="product_id")
+                //Add drag and drop image upload feature soon
+                
+                p
+                    input(type="submit" id="addProductButton" class=".button-style" data-productLink=`admin/edit/${product._id}`)

@@ -65,3 +65,13 @@ exports.deleteProduct = async function(id) {
         console.log(error);
     }
 }
+
+exports.findProduct = async function(id){
+    try {
+        return await Products.findOne( {_id: id}, function (err) {
+            if (err) return handleError(err);
+        } )
+    } catch (error) {
+        console.log(error);
+    }
+}

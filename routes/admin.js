@@ -12,8 +12,8 @@ let userId;
 const sessionValidator = require('./../controller/session-validation')
 router.use(sessionValidator);
 
-const findAllProducts = require('./../models/products').findAllProducts;
-const deleteProduct = require('./../models/products').deleteProduct;
+const { Products, findAllProducts,deleteProduct, findProduct }   = require('./../models/products');
+
 
 const addNewProductRouter = require('./../controller/admin-controllers/add-new-product');
 router.use('/add', addNewProductRouter );
@@ -63,6 +63,44 @@ router.delete('/delete/:id', async (req, res) => {
         status: 200
     }
     res.end(JSON.stringify(response));
+})
+
+router.get('/edit/:productId', async (req, res) => {
+    try {
+        const product = await findProduct(req.params.productId);
+        res.render('./../views/admin/admin-edit.pug', {product: product});
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+router.put('/edit/:productId', async (req,res) => {
+    if (req.xhr) {
+        let data = JSON.parse(JSON.stringify(req.body));
+
+        await Products.update(
+            { _id: req.body.id},
+            {
+                title: req.body.title,
+                description: req.body.description,
+                price: req.body.price,
+                shipping: {
+                    timeNeeded: req.body.shippingTime,
+                    price: req.body.shippingCharge
+                },
+                quantity: req.body.quantity,
+                tags: req.body.tags
+            }, function(){
+                let response = {
+                    status: 200
+                }
+                res.end(JSON.stringify(response));
+            }
+        )
+
+    } else {    
+        res.render('./../../views/404.pug');
+    }
 })
 
 module.exports = router;
