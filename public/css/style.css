@@ -210,10 +210,10 @@ body {
   background: #fff;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  padding: 60px;
+  padding: 10px 50px;
   z-index: 10;
   border-radius: 10px;
-  opacity: 0;
+  opacity: 1;
   -webkit-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
 }
@@ -232,6 +232,7 @@ body {
   text-align: center;
   margin-bottom: 5px;
   font-family: 'Jomolhari', serif;
+  margin-top: 0px;
 }
 
 #black-overlay {
@@ -341,6 +342,17 @@ input {
 input:focus {
   outline: none;
   border-bottom: 2px solid #537895;
+}
+
+#image-drop-area {
+  width: 100%;
+  height: 100px;
+  background: gray;
+  border: 3px dashed white;
+}
+
+#image-drop-area.highlight {
+  border-color: #09203f;
 }
 
 #editProduct {

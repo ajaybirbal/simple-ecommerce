@@ -10,6 +10,9 @@ let blackOverlay;
 $(document).ready( function () {
     getAllProducts();
 
+    let dropArea = document.getElementById('image-drop-area');
+    console.log(dropArea);
+
     //Handle add new product     box
     popUp = document.getElementById("add-new-product");
     blackOverlay = document.getElementById("black-overlay");
@@ -18,7 +21,53 @@ $(document).ready( function () {
     document.getElementById("showAddProductBox").addEventListener('click', function (event) {
         showAddProductPopup();
     });
+
+    //----------------Handle drag andd drop box-----------------------------------------------------
+    //Add prevent default to each of the function
+    ;['dragenter', 'dragover', 'dragleave','drop'].forEach( eventName => {
+        dropArea.addEventListener(eventName, preventDefaults, false);
+    })
+
+    ;['dragenter', 'dragover'].forEach(eventName => {
+        dropArea.addEventListener(eventName, highlight, false);
+    })
+
+    ;['dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, unhighlight, false);
+    })
+
+    dropArea.addEventListener('drop', handleDrop, false);
+
+    //Processes the file upload process
+    function handleDrop(e) {
+        let xhr = new XMLHttpRequest(),
+            data = new FormData();
     
+        data.append('file_upload', e.dataTransfer.files[0]);
+
+        xhr.open('POST', '/admin/upload/', true);
+        xhr.send(data);
+        xhr.onerror = function(e){
+            console.log("File upload error: " + e);
+        }
+
+        //Run code on success
+        
+    }
+
+    function highlight(e) {
+        dropArea.classList.add('highlight');
+    }
+
+    function unhighlight(e) {
+        dropArea.classList.remove('highlight');
+    }
+
+    function preventDefaults (e) {
+        e.preventDefault()
+        e.stopPropagation()
+    }
+    //-----------------------------End drag drop code---------------------------------------
 })
 
 $(document).submit( '#newProductForm', function(e) {
@@ -38,6 +87,8 @@ $(document).submit( '#newProductForm', function(e) {
     }).fail( function (response) {
         console.log('Error New Product: ' + response);
     })
+
+    console.log(data);
 })
 
 //Gets all the products from the database

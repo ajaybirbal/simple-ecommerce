@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 const config = require('config');
 
+const fileUpload = require('express-fileupload');
+router.use(fileUpload());
+
 const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
@@ -99,8 +102,23 @@ router.put('/edit/:productId', async (req,res) => {
         )
 
     } else {    
-        res.render('./../../views/404.pug');
+        res.render('./../views/404.pug');
     }
+})
+
+
+//Responsible for handling the files upload
+//Function worked after instaling - express-fileupload
+//use ./ in directory for code to work
+router.post('/upload/', (req, res) => {
+    
+        
+    const image = req.files.file_upload;
+
+    image.mv( './uploads/product/' + image.name, function(error){
+        if (error) console.log(error);
+    })
+
 })
 
 module.exports = router;

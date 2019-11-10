@@ -130,11 +130,15 @@ body{
     
 }
 
-//Main admin page Style
+//------------------------------------------Main admin page Style-------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------
+
 #add-new-product{
 
+    //===================Change opacity here ============================
+
     @include pop-up-box-admin;
-    opacity: 0;
+    opacity: 1;
     @include pop-up-effect;
     
     img{
@@ -151,6 +155,7 @@ body{
         text-align: center;
         margin-bottom: 5px;
         font-family: 'Jomolhari', serif;
+        margin-top: 0px;
     }
 }
 
@@ -214,6 +219,17 @@ input{
         border-bottom: 2px solid $brand-first-gradient;
     }
     
+}
+
+#image-drop-area{
+    width: 100%;
+    height: 100px;
+    background: gray;
+    border: 3px dashed white;
+
+    &.highlight{
+        border-color: $brand-second-gradient;
+    }
 }
 
 //-----------------------------------------------------------------------------------------------

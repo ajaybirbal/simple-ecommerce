@@ -25,6 +25,7 @@ router.use(bodyParser.json());
 router.post('/', async (req,res) => {
 
     console.log("Admin add is called");
+    console.log("Prduct image: " + req.files.product_image);
     
     //Check whether req is made by ajax protocol
     if (req.xhr) {
